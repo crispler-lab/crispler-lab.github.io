@@ -1,0 +1,15 @@
+[
+    {
+        "topic": "SQL Injection",
+        "description": "This is the sample description for sql injection",
+        "link": "https://owasp.org/www-community/attacks/SQL_Injection",
+        "tag": "sqli"
+        
+    },
+    {
+        "topic": "Cross Site Scripting",
+        "description": "This is the sample description for cross site scripting or XSS",
+        "link": "https://owasp.org/www-community/attacks/xss/",
+        "tag": "xss"
+    }
+]

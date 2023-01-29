@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Search the Crispler Lab Knowledge Base">
+	<meta name="keywords" content="crispler, security, iot, developer, cloud, electronics">
+	<meta name="author" content="crispler">
+
+	<link rel="stylesheet" href="style.css">
+
+	<title>Crispler Lab Knowledge Base</title>
+</head>
+<body class="color-no-search">		
+	<div class="container">
+		
+		<div class="search">
+			<div class="header">
+				<h1>Crispler Lab</h1>
+				<h2>Knowledge Base Search</h2>
+				<div class="social">
+					<a href="https://twitter.com/crisplerlab">Twitter</a>
+					&bullet;
+					<a href="https://blog.crispler.com/">Blog</a>
+					&bullet;
+					<a href="https://courses.crispler.com/">Courses</a>
+				</div>
+			</div>
+		
+			<div class="query">
+				<form class="searchForm" action="#">
+					<label for="space">Choose the search space</label>
+					<select class="space">
+						<option value="security">Security</option>
+						<option value="development">Development</option>
+						<option value="hardware">Hardware and Electronics</option>
+						<option value="tools">Tools</option>
+						<option value="tech">Tech</option>
+						<option value="non-tech">Non Tech</option>
+					</select>
+				</br></br>
+					<input type="text" class="search" placeholder="ENTER SEARCH TERM" autocomplete="false" autofocus>
+				</form>
+
+			</div>
+
+			<div class="results">
+				<br>
+				<div class="noResults">
+					<h2>No Results Found</h2>
+				</div>
+				<div class="results-table">
+					
+					<table class="results">
+						<thead>
+							<tr>
+								<td width="33%">
+									Topic	
+								</td>
+								<td>
+									Description
+								</td>
+							</tr>
+						</thead>
+						<tbody class="results">
+				
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="subfooter">
+				<!-- <h3>Subfooter comment <a href="url">YouTube</a></h3> -->
+			</div>
+		</div>
+		
+		<div class="footer">
+			&copy; Crispler Lab <script>document.write(/\d{4}/.exec(Date())[0])</script>
+			<br>
+			Fork of <a href="https://ippsec.rocks">ippsec.rocks</a>
+		</div>
+	</div>
+
+	<script src="logic.js"></script>
+</body>
+
+</html>

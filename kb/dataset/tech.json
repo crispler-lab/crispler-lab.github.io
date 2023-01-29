@@ -1,0 +1,16 @@
+[
+    {
+        "topic": "tech topic 1",
+        "description": "This is the sample description for tech",
+        "link": "https://owasp.org/www-community/attacks/SQL_Injection",
+        "tag": "tech"
+        
+    },
+    {
+        "topic": "tech topic 2",
+        "description": "This is the sample description for tech",
+        "link": "https://owasp.org/www-community/attacks/SQL_Injection",
+        "tag": "tech"
+        
+    }
+]
