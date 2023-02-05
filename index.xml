@@ -13,9 +13,10 @@
       <pubDate>Sat, 28 Jan 2023 16:34:23 +0530</pubDate>
       
       <guid>https://blog.crispler.com/posts/test/</guid>
-      <description>This is test post content
-//This is test java code public static void main(){ System.out.println(&amp;#34;Hello World&amp;#34;); } </description>
+      <description>This text will be displayed as the summary or we can use &amp;ldquo;&lt;!-- raw HTML omitted --&gt;&amp;rdquo;</description>
     </item>
+    
+    
     
   </channel>
 </rss>

@@ -5,6 +5,25 @@
     <link>https://blog.crispler.com/tags/</link>
     <description>Recent content in Tags on Crispler Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://blog.crispler.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Jan 2023 16:34:23 +0530</lastBuildDate><atom:link href="https://blog.crispler.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>sample-tag1</title>
+      <link>https://blog.crispler.com/tags/sample-tag1/</link>
+      <pubDate>Sat, 28 Jan 2023 16:34:23 +0530</pubDate>
+      
+      <guid>https://blog.crispler.com/tags/sample-tag1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sample-tag2</title>
+      <link>https://blog.crispler.com/tags/sample-tag2/</link>
+      <pubDate>Sat, 28 Jan 2023 16:34:23 +0530</pubDate>
+      
+      <guid>https://blog.crispler.com/tags/sample-tag2/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
