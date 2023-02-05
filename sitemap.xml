@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://blog.crispler.com/categories/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/categories/category1/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/categories/category2/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/posts/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/tags/sample-tag1/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/tags/sample-tag2/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/tags/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/posts/test/</loc>
+    <lastmod>2023-01-28T16:34:23+05:30</lastmod>
+  </url><url>
+    <loc>https://blog.crispler.com/archives/</loc>
+  </url><url>
+    <loc>https://blog.crispler.com/search/</loc>
+  </url>
+</urlset>
