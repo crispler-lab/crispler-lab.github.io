@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Secure Code Review | Crispler Blog</title>
+<meta name="keywords" content="code review">
+<meta name="description" content="Introduction Manual Source code review is one of the most essential skills for any penetration tester to have. This is one of the areas where even the experienced penetration testers are not comfortable. This is because there are multiple challenges associated with the manual code review.
+One of the challenges is the familiarity with the language. As a penetration tester, we come across several languages and technology stacks. It is not feasible for a person to be proficient in all the programming languages.">
+<meta name="author" content="">
+<link rel="canonical" href="https://blog.crispler.com/misc/secure_code_review/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9d9c2f6d61ea37657a7b1c81246cb837d355f339206354b287a091164b60fb3c.css" integrity="sha256-nZwvbWHqN2V6exyBJGy4N9NV8zkgY1Syh6CRFktg&#43;zw=" rel="preload stylesheet" as="style">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://blog.crispler.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.crispler.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.crispler.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.crispler.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.crispler.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Secure Code Review" />
+<meta property="og:description" content="Introduction Manual Source code review is one of the most essential skills for any penetration tester to have. This is one of the areas where even the experienced penetration testers are not comfortable. This is because there are multiple challenges associated with the manual code review.
+One of the challenges is the familiarity with the language. As a penetration tester, we come across several languages and technology stacks. It is not feasible for a person to be proficient in all the programming languages." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.crispler.com/misc/secure_code_review/" /><meta property="article:section" content="misc" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Secure Code Review"/>
+<meta name="twitter:description" content="Introduction Manual Source code review is one of the most essential skills for any penetration tester to have. This is one of the areas where even the experienced penetration testers are not comfortable. This is because there are multiple challenges associated with the manual code review.
+One of the challenges is the familiarity with the language. As a penetration tester, we come across several languages and technology stacks. It is not feasible for a person to be proficient in all the programming languages."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Miscs",
+      "item": "https://blog.crispler.com/misc/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Secure Code Review",
+      "item": "https://blog.crispler.com/misc/secure_code_review/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Secure Code Review",
+  "name": "Secure Code Review",
+  "description": "Introduction Manual Source code review is one of the most essential skills for any penetration tester to have. This is one of the areas where even the experienced penetration testers are not comfortable. This is because there are multiple challenges associated with the manual code review.\nOne of the challenges is the familiarity with the language. As a penetration tester, we come across several languages and technology stacks. It is not feasible for a person to be proficient in all the programming languages.",
+  "keywords": [
+    "code review"
+  ],
+  "articleBody": "Introduction Manual Source code review is one of the most essential skills for any penetration tester to have. This is one of the areas where even the experienced penetration testers are not comfortable. This is because there are multiple challenges associated with the manual code review.\nOne of the challenges is the familiarity with the language. As a penetration tester, we come across several languages and technology stacks. It is not feasible for a person to be proficient in all the programming languages. The other challenge is the size of the codebase. Often we come across the application which has a huge codebase and we have no idea where to start from.\nIn this blog, we are going to look at a few of the techniques which can help to get started with manual secure code review. The methodologies discussed in this blog are language agnostic so they can be used to review the code irrespective of the language.\nPre Requisite “A man is only as good as his tools” - Emmert Wolf\nBefore starting the code review, it is important to have a certain set of tools at your disposal to perform the manual code review efficiently. Use an IDE which is supported by the language you are reviewing. An IDE is required for:\nSearching through the complete codebase Jumping to the method implementation using shortcuts Debugging (not mandatory) VSCode is one of the IDE which supports multiple languages via plugins. This makes it a great IDE for code review of any language.\nWe can get away with this pre-requisite by using find/grep and a simple text editor, but it will certainly make life tougher and becomes time-consuming.\nThe other prerequisite is the ability to read and write code. As a penetration tester, if we want to review the source code, it is really crucial that we know at least one programming language. We should be familiar with basic programming constructs like loops, if-else conditions, switch-case etc.\nCode Review Methodology Before starting the code review, we might have multiple queries in our mind like\nHow to start? What to look for? Which areas to focus on? In this section, we are going to look into various methodologies for reviewing the source code and identifying the security issues. I have tried to provide the analogy for all the techniques in order to relate it with real-world scenarios.\nReconnaissance Reconnaissance is the first step of penetration testing where we try to understand the target system and gather as much information as possible. Apply the same concept while doing the code review. During the reconnaissance phase, get the feel of the codebase. Skim through the code repository and try to understand the structure of the codebase. This helps us to the coding pattern used and locate the important directories like:\nRoute mappings Configurations Middlewares Handler / Controller functions Authenticated and un-authenticated areas of the app Libraries used (open source, custom) This gives us the overall idea of the code repository and a good starting point.\nWhile reviewing the web applications / APIs, start with the unauthenticated area or publicity accessible pages because issues found on these pages can serve as an entry point to the whole application and these issues are considered more severe.\nKeyword / Pattern Searching The easiest way to start the code review process is grepping or searching for interesting keywords or patterns in the source code. This approach can also be termed as a bottom-up approach.\nThere are certain dangerous functions in every language which can lead to critical vulnerabilities like Remote Code Execution. We can use resources like SonarSource to identify such functions or vulnerable code patterns. SonarSource supports multiple languages and it can help to find the language-specific security issues by selecting the “Security Hotspot” tab. In SonarSource, select the language you are auditing and search the keywords in the complete codebase. If any such instances are found, start reviewing the code to validate if it is vulnerable. Look for the parameters accepted by that function and traceback till we reach the origin.\nUnsanitized user input consumed by the dangerous functions is the prime reason for most of the vulnerabilities. This approach requires a general understanding of the programming concepts. The ability to read and understand the code in any language is sufficient to perform code review using this method.\nThis approach of reviewing the source code has few advantages like:\nIdentifying low hanging fruits. Doesn’t require prior knowledge of the language. But is this method really worth when most of the companies now have the automated static code analysis tool integrated with their development pipeline? There are multiple static analysis tools (free and commercial) which can easily identify such issues.\nThe answer is YES. Most of the security tools are integrated as non-blocking jobs in the CI/CD pipeline. This means that even if the security issues are reported by these tools, the build and deployment process continues without any failure. The problem is that these source code analysis tools are notorious for reporting a large number of false positives again and again (if not configured correctly). It’s not uncommon that the development team soon starts ignoring the reports from these tools. It is possible that a genuine issue slips in the list of hundreds of false-positive findings. This is where this approach of manual code review can help.\nSource to Sink Approach This is the more sturdy approach. This method can also be termed as top-down approach. Start with one functionality at a time. For eg, if you are reviewing the source code of an API, start with the handler/controller function which handles that URL route. From the handler function, move downwards and check all the intermediate function calls.\nThe downside of this approach is that for a very big codebase, it will be very difficult to cover all the functionalities and review their source code. It might not provide complete coverage, so it is very important to prioritize the important areas of the application. Some of the critical areas of any application which needs to be prioritized during the code review are:\nArea Possible Vulnerabilities Authorization (Login, Register, Change / Forget password) Timing Attacks, Weak Cryptography Authorization Business Logic Flaws Database Access SQL Injection Logging and Error Handling Information disclosure Cryptography Usage of weak algorithms used like MD5 Note: The above list of critical areas and bug associated with them are not exhaustive and they are just used as examples\nImproper function usage Some times even using the secure functions can result in security errors. Using the functions incorrectly can lead to unexpected behaviour. If you are reviewing any critical functionality say authentication or authorization, make sure to thoroughly look into the complete code and review ALL the intermediate functions calls – both internal (language-specific) and custom. Review the documentation of the internal functions and check for any warnings related to the usage of that function. Research for any security issues specific to those functions if used incorrectly. For example, the usage of addslashes() in PHP can result in SQL Injection. The same issue is highlighted in the comment section of the documentation. This shows the importance of reading the documentation carefully while doing the code review.\nInput Validation This is one of the most critical areas to look into while doing the code review. Most of the security vulnerabilities can be avoided by having robust input validation. Review the logic used for input validation. If regular expressions are used, review the regex to confirm it does not result in accepting unexpected or undesired inputs. Use sites like regex101.com to validate the regular expression. regex101.com supports multiple languages, and it is very helpful in validating the malformed inputs without running the application.\nReview Logs / Debugging This method might not be considered as a part of code review but is really efficient while reviewing big applications with a huge codebase. Having access to the real-time logs generated by the application or debugging at runtime eases the process of code review and helps to uncover hidden security and business logic flaws in the application. Access to the application and its backend infrastructure is required for reviewing the live logs (application and database). If access to the backend is not possible, try running and debugging the application locally if possible. This makes the code review process much robust and increases confidence in securing the application.\n",
+  "wordCount" : "1399",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.crispler.com/misc/secure_code_review/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Crispler Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.crispler.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://blog.crispler.com/" accesskey="h" title="Crispler Blog (Alt + H)">Crispler Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://blog.crispler.com/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://blog.crispler.com/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://blog.crispler.com/">Home</a>&nbsp;»&nbsp;<a href="https://blog.crispler.com/misc/">Miscs</a></div>
+    <h1 class="post-title">
+      Secure Code Review
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Manual Source code review is one of the most essential skills for any penetration tester to have. This is one of the areas where even the experienced penetration testers are not comfortable. This is because there are multiple challenges associated with the manual code review.</p>
+<p>One of the challenges is the <strong>familiarity with the language</strong>. As a penetration tester, we come across several languages and technology stacks. It is not feasible for a person to be proficient in all the programming languages. The other challenge is the <strong>size of the codebase</strong>. Often we come across the application which has a huge codebase and we have no idea where to start from.</p>
+<p>In this blog, we are going to look at a few of the techniques which can help to get started with manual secure code review. The methodologies discussed in this blog are language agnostic so they can be used to review the code irrespective of the language.</p>
+<h3 id="pre-requisite">Pre Requisite<a hidden class="anchor" aria-hidden="true" href="#pre-requisite">#</a></h3>
+<blockquote>
+<p>&ldquo;A man is only as good as his tools&rdquo; - Emmert Wolf</p>
+</blockquote>
+<p>Before starting the code review, it is important to have a certain set of tools at your disposal to perform the manual code review efficiently. Use an <strong>IDE</strong> which is supported by the language you are reviewing. An IDE is required for:</p>
+<ul>
+<li>Searching through the complete codebase</li>
+<li>Jumping to the method implementation using shortcuts</li>
+<li>Debugging (not mandatory)</li>
+</ul>
+<p><a href="https://code.visualstudio.com/download">VSCode</a> is one of the IDE which supports multiple languages via plugins. This makes it a great IDE for code review of any language.</p>
+<p>We can get away with this pre-requisite by using find/grep and a simple text editor, but it will certainly make life tougher and becomes time-consuming.</p>
+<p>The other prerequisite is the <strong>ability to read and write code</strong>. As a penetration tester, if we want to review the source code, it is really crucial that we know at least one programming language. We should be familiar with basic programming constructs like loops, if-else conditions, switch-case etc.</p>
+<h2 id="code-review-methodology">Code Review Methodology<a hidden class="anchor" aria-hidden="true" href="#code-review-methodology">#</a></h2>
+<p>Before starting the code review, we might have multiple queries in our mind like</p>
+<ul>
+<li>How to start?</li>
+<li>What to look for?</li>
+<li>Which areas to focus on?</li>
+</ul>
+<p>In this section, we are going to look into various methodologies for reviewing the source code and identifying the security issues. I have tried to provide the analogy for all the techniques in order to relate it with real-world scenarios.</p>
+<h3 id="reconnaissance">Reconnaissance<a hidden class="anchor" aria-hidden="true" href="#reconnaissance">#</a></h3>
+<p><strong>Reconnaissance</strong> is the first step of penetration testing where we try to understand the target system and gather as much information as possible. Apply the same concept while doing the code review. During the reconnaissance phase, <strong>get the feel of the codebase</strong>. Skim through the code repository and try to understand the structure of the codebase. This helps us to the <strong>coding pattern</strong> used and locate the important directories like:</p>
+<ul>
+<li>Route mappings</li>
+<li>Configurations</li>
+<li>Middlewares</li>
+<li>Handler / Controller functions</li>
+<li>Authenticated and un-authenticated areas of the app</li>
+<li>Libraries used (open source, custom)</li>
+</ul>
+<p>This gives us the overall idea of the code repository and a good starting point.</p>
+<p>While reviewing the web applications / APIs, start with the unauthenticated area or publicity accessible pages because issues found on these pages can serve as an entry point to the whole application and these issues are considered more severe.</p>
+<h3 id="keyword--pattern-searching">Keyword / Pattern Searching<a hidden class="anchor" aria-hidden="true" href="#keyword--pattern-searching">#</a></h3>
+<p>The easiest way to start the code review process is grepping or searching for interesting keywords or patterns in the source code. This approach can also be termed as a <strong>bottom-up</strong> approach.</p>
+<p>There are certain <strong>dangerous functions</strong> in every language which can lead to critical vulnerabilities like Remote Code Execution. We can use resources like SonarSource to identify such functions or vulnerable code patterns. <a href="https://rules.sonarsource.com/">SonarSource</a> supports multiple languages and it can help to find the language-specific security issues by selecting the <strong>“Security Hotspot”</strong> tab. In SonarSource, select the language you are auditing and search the keywords in the complete codebase. If any such instances are found, start reviewing the code to validate if it is vulnerable. Look for the parameters accepted by that function and traceback till we reach the origin.</p>
+<p><strong>Unsanitized user input</strong> consumed by the dangerous functions is the prime reason for most of the vulnerabilities. This approach requires a general understanding of the programming concepts. The ability to read and understand the code in any language is sufficient to perform code review using this method.</p>
+<p>This approach of reviewing the source code has few advantages like:</p>
+<p>Identifying low hanging fruits.
+Doesn’t require prior knowledge of the language.
+But is this method really worth when most of the companies now have the automated <strong>static code analysis</strong> tool integrated with their development pipeline? There are multiple static analysis tools (free and commercial) which can easily identify such issues.</p>
+<p>The answer is <strong>YES</strong>. Most of the security tools are integrated as non-blocking jobs in the CI/CD pipeline. This means that even if the security issues are reported by these tools, the build and deployment process continues without any failure. The problem is that these source code analysis tools are notorious for reporting a large number of false positives again and again (if not configured correctly). It’s not uncommon that the development team soon starts ignoring the reports from these tools. It is possible that a genuine issue slips in the list of hundreds of false-positive findings. This is where this approach of manual code review can help.</p>
+<h3 id="source-to-sink-approach">Source to Sink Approach<a hidden class="anchor" aria-hidden="true" href="#source-to-sink-approach">#</a></h3>
+<p>This is the more sturdy approach. This method can also be termed as <strong>top-down</strong> approach. Start with <strong>one functionality at a time</strong>. For eg, if you are reviewing the source code of an API, start with the handler/controller function which handles that URL route. From the handler function, move downwards and check all the intermediate function calls.</p>
+<p>The downside of this approach is that for a very big codebase, it will be very difficult to cover all the functionalities and review their source code. It might not provide complete coverage, so it is very important to prioritize the important areas of the application. Some of the critical areas of any application which needs to be prioritized during the code review are:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Possible Vulnerabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization (Login, Register, Change / Forget password)</td>
+<td><a href="https://en.wikipedia.org/wiki/Timing_attack">Timing Attacks</a>, Weak Cryptography</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Business Logic Flaws</td>
+</tr>
+<tr>
+<td>Database Access</td>
+<td>SQL Injection</td>
+</tr>
+<tr>
+<td>Logging and Error Handling</td>
+<td>Information disclosure</td>
+</tr>
+<tr>
+<td>Cryptography</td>
+<td>Usage of weak algorithms used like MD5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: <em>The above list of critical areas and bug associated with them are not exhaustive and they are just used as examples</em></p>
+<h3 id="improper-function-usage">Improper function usage<a hidden class="anchor" aria-hidden="true" href="#improper-function-usage">#</a></h3>
+<p>Some times even using the secure functions can result in security errors. Using the functions incorrectly can lead to unexpected behaviour. If you are reviewing any <strong>critical functionality</strong> say authentication or authorization, make sure to thoroughly look into the complete code and <strong>review ALL the intermediate functions calls</strong> – both internal (language-specific) and custom. Review the documentation of the internal functions and check for any warnings related to the usage of that function. Research for any security issues specific to those functions if used incorrectly. For example, the usage of <a href="https://www.php.net/manual/en/function.addslashes.php">addslashes()</a> in PHP can result in SQL Injection. The same issue is highlighted in the comment section of the documentation. This shows the importance of <strong>reading the documentation</strong> carefully while doing the code review.</p>
+<h3 id="input-validation">Input Validation<a hidden class="anchor" aria-hidden="true" href="#input-validation">#</a></h3>
+<p>This is one of the most critical areas to look into while doing the code review. Most of the security vulnerabilities can be avoided by having robust input validation. Review the logic used for input validation. If regular expressions are used, review the regex to confirm it does not result in accepting unexpected or undesired inputs. Use sites like <a href="https://regex101.com/">regex101.com</a> to validate the regular expression. <a href="https://regex101.com/">regex101.com</a> supports multiple languages, and it is very helpful in validating the malformed inputs without running the application.</p>
+<h3 id="review-logs--debugging">Review Logs / Debugging<a hidden class="anchor" aria-hidden="true" href="#review-logs--debugging">#</a></h3>
+<p>This method might not be considered as a part of code review but is really efficient while reviewing big applications with a huge codebase. Having access to the real-time logs generated by the application or debugging at runtime eases the process of code review and helps to uncover hidden security and business logic flaws in the application. Access to the application and its backend infrastructure is required for reviewing the live logs (application and database). If access to the backend is not possible, try running and debugging the application locally if possible. This makes the code review process much robust and increases confidence in securing the application.</p>
+
+
+
+    
+    <section class="subscribe-content">
+    <hr>
+    <p>If you enjoyed the content, why not make it a lasting connection? Subscribe now to stay updated with my latest blogs on Software and Hardware Security, Electronics, IoT, Software Defined Radio and many more ideas brewing in my head. </p>
+</section>
+
+<section class="subscription-form">
+    <form
+        action="https://crispler.us10.list-manage.com/subscribe/post-json?u=fec69876410e61209a9e6e334&id=56c69ceea4&f_id=003bd2e5f0&c=?"
+        method="post" autocomplete="off" class="subscribe-form">
+        <div class="subscribe-input"><input type="email" name="EMAIL" id="email" required=""
+                placeholder="Email Address ↵" title="Email Address"></div><input value="Subscribe" type="submit"
+            class="subscribe-button" title="Subscribe">
+    </form>
+    <section class="entry-content">
+        <div class="subscribe-message">Get regular updates on tech and security in crisp & concise format.
+        </div>
+    </section>
+</section>
+
+<script>$(".subscribe-form").submit(function (e) { e.preventDefault(); var t = $(this), n = t.attr("action"), s = t.attr("method"); $.ajax({ type: s, url: n, data: t.serialize(), dataType: `jsonp`, success: function (e) { e.result === `success` ? (t.find(".subscribe-button").attr("value", "Subscribed!"), $(".subscribe-message").html("Wooooh!! you have successfully subscribed. Keep an eye on your inbox &#x1F680;"), $(".subscribe-form :input").prop("disabled", !0)) : (t.find(".subscribe-button").attr("value", "Failed to Subscribe! Click again to retry"), $(".subscribe-message").html("An error occured while subscribing. Messaege: " + e.msg + "."), t[0].reset()), console.log(e) }, error: function (e) { console.log("An error occurred."), console.log(e), t[0].reset() } }) })</script>
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://blog.crispler.com/tags/code-review/">code review</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://blog.crispler.com/">Crispler Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
