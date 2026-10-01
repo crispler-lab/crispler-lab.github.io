@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Programming eras: human difficulty vs intent ambiguity</title>
+  <desc id="desc">A line chart comparing human difficulty and ambiguity-induced bug risk across machine code, assembly, low-level programming, high-level programming, and natural language programming.</desc>
+  <rect width="1200" height="800" fill="#0b1020"/>
+  <style>
+    .title{font:700 32px Inter,Arial,sans-serif;fill:#f8fafc}.sub{font:17px Inter,Arial,sans-serif;fill:#cbd5e1}.axis{stroke:#94a3b8;stroke-width:2}.grid{stroke:#243044;stroke-width:1}.tick{font:16px Inter,Arial,sans-serif;fill:#cbd5e1}.label{font:15px Inter,Arial,sans-serif;fill:#cbd5e1}.legend{font:18px Inter,Arial,sans-serif;fill:#e2e8f0}.diff{stroke:#38bdf8;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}.amb{stroke:#f97316;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}.dotd{fill:#38bdf8}.dota{fill:#f97316}.note{font:15px Inter,Arial,sans-serif;fill:#94a3b8}.era{font:700 16px Inter,Arial,sans-serif;fill:#e2e8f0}.small{font:13px Inter,Arial,sans-serif;fill:#94a3b8}
+  </style>
+  <text class="title" x="70" y="62">Programming eras: difficulty falls, intent ambiguity rises</text>
+  <text class="sub" x="70" y="95">Agentic coding lowers expression difficulty, but vague intent must be handled by specs, domain review, tests, and automated reasoning.</text>
+
+  <g transform="translate(120,145)">
+    <line class="axis" x1="0" y1="430" x2="940" y2="430"/>
+    <line class="axis" x1="0" y1="0" x2="0" y2="430"/>
+    <g>
+      <line class="grid" x1="0" y1="430" x2="940" y2="430"/><text class="tick" x="-36" y="436">1</text>
+      <line class="grid" x1="0" y1="322.5" x2="940" y2="322.5"/><text class="tick" x="-36" y="328.5">2</text>
+      <line class="grid" x1="0" y1="215" x2="940" y2="215"/><text class="tick" x="-36" y="221">3</text>
+      <line class="grid" x1="0" y1="107.5" x2="940" y2="107.5"/><text class="tick" x="-36" y="113.5">4</text>
+      <line class="grid" x1="0" y1="0" x2="940" y2="0"/><text class="tick" x="-36" y="6">5</text>
+    </g>
+    <polyline class="diff" points="40,0 255,86 470,193 685,301 900,408"/>
+    <polyline class="amb" points="40,408 255,322 470,215 685,150 900,21"/>
+    <g>
+      <circle class="dotd" cx="40" cy="0" r="7"/><circle class="dota" cx="40" cy="408" r="7"/>
+      <circle class="dotd" cx="255" cy="86" r="7"/><circle class="dota" cx="255" cy="322" r="7"/>
+      <circle class="dotd" cx="470" cy="193" r="7"/><circle class="dota" cx="470" cy="215" r="7"/>
+      <circle class="dotd" cx="685" cy="301" r="7"/><circle class="dota" cx="685" cy="150" r="7"/>
+      <circle class="dotd" cx="900" cy="408" r="7"/><circle class="dota" cx="900" cy="21" r="7"/>
+    </g>
+    <g text-anchor="middle">
+      <text class="era" x="40" y="466">Machine code</text><text class="small" x="40" y="487">1s and 0s</text>
+      <text class="era" x="255" y="466">Assembly</text><text class="small" x="255" y="487">mnemonics</text>
+      <text class="era" x="470" y="466">Low-level</text><text class="small" x="470" y="487">C / C++</text>
+      <text class="era" x="685" y="466">High-level</text><text class="small" x="685" y="487">Java / Python / JS</text>
+      <text class="era" x="900" y="466">Natural language</text><text class="small" x="900" y="487">agentic coding</text>
+    </g>
+    <text class="label" transform="translate(-78,230) rotate(-90)">Relative scale: 1 low, 5 high</text>
+    <text class="label" x="355" y="540">Interaction model with the system</text>
+  </g>
+
+  <g transform="translate(350,700)">
+    <line class="diff" x1="0" y1="0" x2="55" y2="0"/><circle class="dotd" cx="28" cy="0" r="6"/><text class="legend" x="72" y="6">Human difficulty</text>
+    <line class="amb" x1="320" y1="0" x2="375" y2="0"/><circle class="dota" cx="348" cy="0" r="6"/><text class="legend" x="392" y="6">Intent ambiguity → bug risk</text>
+  </g>
+  <text class="note" x="70" y="755">Illustrative model, not a measurement. Era 5 still inherits era 3 and 4 bugs because agents emit conventional languages underneath.</text>
+</svg>
